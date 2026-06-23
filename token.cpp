@@ -1,7 +1,7 @@
 #include"token.h"
 #include<string>
 
-Token::Token(TokenType type,const std::string& value):type(type),value(value){};
+Token::Token(TokenType type,const std::string& value):type(type),value(value){}
 
 std::string Token::to_string() const{
     return value;

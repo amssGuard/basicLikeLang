@@ -5,7 +5,7 @@
 
 Lexer::Lexer(const std::string& text):text(text),pos(-1),current_char(' '){
     advance();
-};
+}
 void Lexer::advance(){
     pos++;
     current_char = (pos<text.length())?text[pos]:'\0';
@@ -63,8 +63,7 @@ std::vector<Token> Lexer::make_tokens(){
         else{
             char c = current_char;
             advance();
-            IllegalCharError(std::string("'")+c+"'");
-            return {};
+            throw IllegalCharError(std::string("'")+c+"'");
         }
     }
     tokens.push_back(Token(TokenType::EOF_TOKEN,"EOF"));

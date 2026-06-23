@@ -1,6 +1,7 @@
 #include<iostream>
 #include<string>
 #include"lexer.h"
+#include"error.h"
 
 using namespace std;
 
@@ -10,10 +11,14 @@ int main(){
         cout<<"basic >";
         getline(cin,inp);
         Lexer lexer(inp);
-        auto tokens = lexer.make_tokens();
-        for(const auto& tok:tokens)
+        try{
+            auto tokens = lexer.make_tokens();
+            for(const auto& tok:tokens)
             cout<<tok.getValue()<<" ";
-        cout<<endl;
+            cout<<endl;
+        }catch(Error &e){
+            cout<<e.to_string()<<endl;
+        }
     }
     return 0;
 }
