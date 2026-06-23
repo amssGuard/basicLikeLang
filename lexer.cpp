@@ -1,4 +1,5 @@
 #include"lexer.h"
+#include"illegalCharError.h"
 #include<iostream>
 #include<cctype>
 
@@ -48,13 +49,24 @@ std::vector<Token> Lexer::make_tokens(){
             tokens.push_back(Token(TokenType::DIV,"/"));
             advance();
         }
+        else if(current_char == '('){
+            tokens.push_back(Token(TokenType::LPAREN,"("));
+            advance();
+        }
+        else if(current_char == ')'){
+            tokens.push_back(Token(TokenType::RPAREN,")"));
+            advance();
+        }
         else if(std::isdigit(current_char)){
             tokens.push_back(make_number());
         }
         else{
-            std::cout<<"---Error Message";
+            char c = current_char;
+            advance();
+            IllegalCharError(std::string("'")+c+"'");
             return {};
         }
     }
+    tokens.push_back(Token(TokenType::EOF_TOKEN,"EOF"));
     return tokens;
 }

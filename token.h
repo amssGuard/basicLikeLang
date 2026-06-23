@@ -42,7 +42,7 @@ class Token{
 
     public:
 
-    Token(TokenType type,const std::string& value);
+    Token(TokenType type,const std::string& value=NULL);
 
 
 
