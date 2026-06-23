@@ -22,3 +22,5 @@ int main(){
     }
     return 0;
 }
+//TODO: the position constructor should get two more parameters filename and file content
+// so should the lexer get file name

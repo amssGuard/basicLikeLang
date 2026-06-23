@@ -2,4 +2,4 @@
 #include<iostream>
 #include<string>
 
-IllegalCharError::IllegalCharError(std::string details):Error("Illegal Character",details){}
+IllegalCharError::IllegalCharError(Position posStart, Position posEnd, std::string details):Error(posStart,posEnd,"Illegal Character",details){}

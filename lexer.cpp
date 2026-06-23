@@ -3,12 +3,13 @@
 #include<iostream>
 #include<cctype>
 
-Lexer::Lexer(const std::string& text):text(text),pos(-1),current_char(' '){
+
+Lexer::Lexer(const std::string& text):text(text),pos(Position(-1, 0, -1)),current_char(' '){
     advance();
 }
 void Lexer::advance(){
-    pos++;
-    current_char = (pos<text.length())?text[pos]:'\0';
+    pos.advance(current_char);
+    current_char = (pos.idx<text.length())?text[pos.idx]:'\0';
 }
 
 Token Lexer::make_number(){
@@ -61,9 +62,10 @@ std::vector<Token> Lexer::make_tokens(){
             tokens.push_back(make_number());
         }
         else{
+            Position posStart = pos.copy();
             char c = current_char;
             advance();
-            throw IllegalCharError(std::string("'")+c+"'");
+            throw IllegalCharError(posStart,pos,std::string("'")+c+"'");
         }
     }
     tokens.push_back(Token(TokenType::EOF_TOKEN,"EOF"));
