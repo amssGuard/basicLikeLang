@@ -8,7 +8,7 @@ posStart(posStart),
 posEnd(posEnd),
 errorName(errorName),errorDetail(errorDetail){}
 
-Error::~Error(){}
+
 
 string Error::to_string(){
     return errorName+" : "+errorDetail+" at line Number "+std::to_string(posStart.ln+1)+" on "+std::to_string(posStart.col+1)+"th character";

@@ -8,6 +8,6 @@ class Error{
     std::string errorName,errorDetail;
     public:
     Error(Position postStart, Position posEnd,std::string errorName,std::string detail);
-    virtual ~Error();
+
     std::string to_string();
 };
