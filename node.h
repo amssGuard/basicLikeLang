@@ -1,7 +1,7 @@
 #pragma once
 #include<string>
 #include<memory>
-#include<token.h>
+#include"token.h"
 
 class Node{
     public:
@@ -25,6 +25,6 @@ class BinOpNode : public Node{
     public:
     BinOpNode(std::unique_ptr<Node> left, Token op, std::unique_ptr<Node> right):left(std::move(left)), op(op), right(std::move(right)){}
     std::string to_string()const override{
-        return "("+left->to_string()+", "+op.getValue()+", "+right->to_string();
+        return "("+left->to_string()+", "+op.getValue()+", "+right->to_string()+")";
     }
 };

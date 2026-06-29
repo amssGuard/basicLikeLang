@@ -2,6 +2,7 @@
 #include<string>
 #include"lexer.h"
 #include"error.h"
+#include"bparser.h"
 
 using namespace std;
 
@@ -13,9 +14,12 @@ int main(){
         Lexer lexer(inp);
         try{
             auto tokens = lexer.make_tokens();
-            for(const auto& tok:tokens)
-            cout<<tok.getValue()<<" ";
-            cout<<endl;
+            //for(const auto& tok:tokens)
+            //cout<<tok.getValue()<<" ";
+            //cout<<endl;
+            BParser parse = BParser(tokens);
+            unique_ptr<Node> ast = parse.parse();
+            cout<<ast->to_string()<<endl;
         }catch(Error &e){
             cout<<e.to_string()<<endl;
         }

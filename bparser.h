@@ -4,6 +4,7 @@
 #include<vector>
 #include<memory>
 #include"node.h"
+#include <functional>
 
 class BParser{
     private:
@@ -16,4 +17,6 @@ class BParser{
     std::unique_ptr<Node> factor();
     std::unique_ptr<Node> term();
     std::unique_ptr<Node> expr();
+    std::unique_ptr<Node> BinOp(std::function<std::unique_ptr<Node>()> func,TokenType,TokenType);
+    std::unique_ptr<Node> parse();
 };
